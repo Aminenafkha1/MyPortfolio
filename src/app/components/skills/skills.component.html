@@ -1,0 +1,140 @@
+<section class="skills-section section">
+  <div class="container">
+    <!-- Skills Header -->
+    <div class="section-header">
+      <h1 class="section-title">
+        <i class="fas fa-code-branch"></i>
+        Technical Skills
+      </h1>
+      <p class="section-subtitle">
+        Comprehensive expertise in modern .NET development, cloud architecture, and enterprise application design
+      </p>
+    </div>
+
+    <!-- Achievements Overview -->
+    <div class="achievements-grid">
+      <div class="achievement-card card" *ngFor="let achievement of achievements">
+        <div class="achievement-icon">
+          <i [class]="achievement.icon"></i>
+        </div>
+        <div class="achievement-content">
+          <div class="achievement-count">{{achievement.count}}</div>
+          <h3 class="achievement-title">{{achievement.title}}</h3>
+          <p class="achievement-description">{{achievement.description}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Categories -->
+    <div class="skills-container">
+      <div class="skill-category" *ngFor="let category of skillCategories">
+        <div class="category-header">
+          <div class="category-icon">
+            <i [class]="category.icon"></i>
+          </div>
+          <h2 class="category-title">{{category.name}}</h2>
+        </div>
+        
+        <div class="skills-grid">
+          <div class="skill-item" *ngFor="let skill of category.skills">
+            <div class="skill-header">
+              <div class="skill-info">
+                <i [class]="skill.icon" class="skill-icon"></i>
+                <span class="skill-name">{{skill.name}}</span>
+              </div>
+              <span class="skill-percentage">{{skill.level}}%</span>
+            </div>
+            <div class="skill-bar">
+              <div 
+                class="skill-progress" 
+                [attr.data-level]="skill.level"
+                [style.backgroundColor]="getSkillColor(skill.level)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="certifications-section">
+      <h2 class="certifications-title">
+        <i class="fas fa-certificate"></i>
+        Professional Certifications
+      </h2>
+      <div class="certifications-grid">
+        <div class="certification-card card" *ngFor="let cert of certifications">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <i [class]="cert.icon"></i>
+            </div>
+            <div class="cert-verified" *ngIf="cert.verified">
+              <i class="fas fa-check-circle"></i>
+              <span>Verified</span>
+            </div>
+          </div>
+          <div class="cert-content">
+            <h3 class="cert-name">{{cert.name}}</h3>
+            <p class="cert-issuer">{{cert.issuer}}</p>
+            <div class="cert-details">
+              <span class="cert-date">{{cert.date}}</span>
+              <span class="cert-id">ID: {{cert.credentialId}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Summary -->
+    <div class="skills-summary">
+      <div class="summary-card card">
+        <h3 class="summary-title">
+          <i class="fas fa-chart-line"></i>
+          Skills Summary
+        </h3>
+        <div class="summary-stats">
+          <div class="stat-item">
+            <div class="stat-label">Expert Level (90%+)</div>
+            <div class="stat-value">{{getSkillsCountByLevel(90)}} skills</div>
+            <div class="stat-bar expert"></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Advanced Level (80-89%)</div>
+            <div class="stat-value">{{getSkillsCountByLevel(80, 89)}} skills</div>
+            <div class="stat-bar advanced"></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Proficient Level (70-79%)</div>
+            <div class="stat-value">{{getSkillsCountByLevel(70, 79)}} skills</div>
+            <div class="stat-bar proficient"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="learning-card card">
+        <h3 class="learning-title">
+          <i class="fas fa-graduation-cap"></i>
+          Currently Learning
+        </h3>
+        <div class="learning-items">
+          <div class="learning-item">
+            <i class="fas fa-brain"></i>
+            <span>Machine Learning with ML.NET</span>
+          </div>
+          <div class="learning-item">
+            <i class="fab fa-aws"></i>
+            <span>AWS Cloud Services</span>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-robot"></i>
+            <span>AI Integration with Azure OpenAI</span>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Advanced Security Patterns</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,217 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="code-rain" *ngFor="let line of codeLines; let i = index" 
+         [style.left.px]="line.x" 
+         [style.animation-delay]="line.delay + 's'">
+      {{line.text}}
+    </div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-greeting">
+        <span class="greeting-text">{{ currentGreeting }}</span>
+        <span class="cursor">|</span>
+      </div>
+      
+      <h1 class="hero-title">
+        I'm a <span class="highlight">.NET</span> Developer
+      </h1>
+      
+      <p class="hero-subtitle">
+        Building enterprise-grade applications with <strong>C#</strong>, <strong>ASP.NET</strong>, 
+        and modern web technologies
+      </p>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">{{ experienceYears }}+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{{ projectsCompleted }}+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{{ technologiesUsed }}+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+      </div>
+      
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn btn-primary btn-lg">
+          <i class="fas fa-code"></i>
+          View My Projects
+        </a>
+        <a routerLink="/contact" class="btn btn-secondary btn-lg">
+          <i class="fas fa-envelope"></i>
+          Get In Touch
+        </a>
+      </div>
+      
+      <div class="tech-stack">
+        <div class="tech-label">Tech Stack:</div>
+        <div class="tech-icons">
+          <div class="tech-icon" *ngFor="let tech of techStack">
+            <i [class]="tech.icon"></i>
+            <span>{{tech.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <!-- Code Editor with Integrated Profile Section -->
+      <div class="code-editor">
+        <div class="editor-header">
+          <div class="editor-tabs">
+            <div class="tab active">Developer.cs</div>
+            <div class="tab">Program.cs</div>
+            <div class="tab">Startup.cs</div>
+          </div>
+          <div class="editor-controls">
+            <span class="control close"></span>
+            <span class="control minimize"></span>
+            <span class="control maximize"></span>
+          </div>
+        </div>
+        <div class="editor-content">
+          <div class="line-numbers">
+            <span *ngFor="let line of editorLines; let i = index">{{i + 1}}</span>
+          </div>
+          <div class="code-content">
+            <!-- Developer Profile Section Inside Code Editor -->
+            <div class="code-profile-section">
+              <div class="profile-photo-container">
+                <div class="profile-photo-frame">
+                  <img src="assets/images/developer-photo.jpg" 
+                       alt="Amine - .NET Developer" 
+                       class="profile-photo"
+                       (error)="onImageError($event)">
+                </div>
+                <div class="profile-status">
+                  <div class="status-dot"></div>
+                  <span>Available for work</span>
+                </div>
+              </div>
+              
+              <div class="profile-info">
+                <h3 class="developer-name">Amine</h3>
+                <p class="developer-role">Senior .NET Developer</p>
+                <div class="developer-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Available Worldwide</span>
+                </div>
+                
+                <div class="profile-social-links">
+                  <a href="#" class="profile-social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="profile-social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="#" class="profile-social-link" title="Stack Overflow">
+                    <i class="fab fa-stack-overflow"></i>
+                  </a>
+                  <a href="#" class="profile-social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Code Content -->
+            <div class="actual-code">
+              <pre><code [innerHTML]="getHighlightedCode()"></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <div class="scroll-arrow">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>What I Specialize In</h2>
+      <p>Building robust, scalable applications with modern development practices</p>
+    </div>
+    
+    <div class="features-grid grid-3">
+      <div class="feature-card card" *ngFor="let feature of features">
+        <div class="feature-icon">
+          <i [class]="feature.icon"></i>
+        </div>
+        <h3>{{feature.title}}</h3>
+        <p>{{feature.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Work Section -->
+<section class="recent-work-section section bg-secondary">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Recent Projects</h2>
+      <p>Some of my latest work showcasing different technologies and approaches</p>
+    </div>
+    
+    <div class="projects-preview grid-2">
+      <div class="project-card card" *ngFor="let project of recentProjects">
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.title">
+          <div class="project-overlay">
+            <a [href]="project.liveUrl" class="project-link" target="_blank">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            <a [href]="project.githubUrl" class="project-link" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>{{project.title}}</h3>
+          <p>{{project.description}}</p>
+          <div class="project-technologies">
+            <span class="tech-tag" *ngFor="let tech of project.technologies">{{tech}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <a routerLink="/projects" class="btn btn-primary">
+        <i class="fas fa-folder-open"></i>
+        View All Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section section">
+  <div class="container text-center">
+    <h2>Ready to Build Something Amazing?</h2>
+    <p>Let's discuss your next project and bring your ideas to life with cutting-edge technology</p>
+    <div class="cta-actions">
+      <a routerLink="/contact" class="btn btn-primary btn-lg">
+        <i class="fas fa-rocket"></i>
+        Start a Project
+      </a>
+      <a href="mailto:your.email@example.com" class="btn btn-outline btn-lg">
+        <i class="fas fa-envelope"></i>
+        Send Email
+      </a>
+    </div>
+  </div>
+</section>

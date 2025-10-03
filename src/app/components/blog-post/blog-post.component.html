@@ -1,0 +1,136 @@
+<article class="blog-post-article" *ngIf="post">
+  <div class="container">
+    <!-- Post Header -->
+    <header class="post-header">
+      <nav class="breadcrumb">
+        <a routerLink="/blog">
+          <i class="fas fa-arrow-left"></i>
+          Back to Blog
+        </a>
+      </nav>
+      
+      <div class="post-category">{{post.category}}</div>
+      <h1 class="post-title">{{post.title}}</h1>
+      
+      <div class="post-meta">
+        <div class="author-info">
+          <img [src]="post.author.avatar" [alt]="post.author.name" class="author-avatar">
+          <div class="author-details">
+            <span class="author-name">{{post.author.name}}</span>
+            <span class="author-bio">{{post.author.bio}}</span>
+          </div>
+        </div>
+        
+        <div class="post-info">
+          <span class="post-date">
+            <i class="fas fa-calendar"></i>
+            {{post.publishDate | date:'fullDate'}}
+          </span>
+          <span class="post-read-time">
+            <i class="fas fa-clock"></i>
+            {{post.readTime}}
+          </span>
+        </div>
+      </div>
+      
+      <div class="post-tags">
+        <span class="tag" *ngFor="let tag of post.tags">#{{tag}}</span>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="post-featured-image">
+      <img [src]="post.image" [alt]="post.title">
+    </div>
+
+    <!-- Post Content -->
+    <div class="post-content-wrapper">
+      <div class="post-content">
+        <!-- Social Share Sidebar -->
+        <div class="social-share">
+          <button class="share-btn" (click)="sharePost()" title="Share this post">
+            <i class="fas fa-share-alt"></i>
+          </button>
+          <a href="#" class="share-btn" title="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="share-btn" title="Share on LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="share-btn" title="Copy Link">
+            <i class="fas fa-link"></i>
+          </a>
+        </div>
+
+        <!-- Article Content -->
+        <div class="article-content" [innerHTML]="post.content"></div>
+      </div>
+
+      <!-- Author Bio -->
+      <div class="author-bio-section">
+        <div class="author-bio-card card">
+          <img [src]="post.author.avatar" [alt]="post.author.name" class="author-large-avatar">
+          <div class="author-bio-content">
+            <h3>About {{post.author.name}}</h3>
+            <p>{{post.author.bio}}</p>
+            <div class="author-social">
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Posts -->
+    <section class="related-posts" *ngIf="relatedPosts.length > 0">
+      <h2 class="related-title">Related Articles</h2>
+      <div class="related-grid">
+        <article class="related-post card" *ngFor="let relatedPost of relatedPosts">
+          <div class="related-image">
+            <img [src]="relatedPost.image" [alt]="relatedPost.title">
+            <div class="related-category">{{relatedPost.category}}</div>
+          </div>
+          <div class="related-content">
+            <h3 class="related-post-title">
+              <a [routerLink]="['/blog', relatedPost.id]">{{relatedPost.title}}</a>
+            </h3>
+            <p class="related-excerpt">{{relatedPost.excerpt}}</p>
+            <div class="related-meta">
+              <span class="related-date">{{relatedPost.publishDate | date:'mediumDate'}}</span>
+              <span class="related-read-time">{{relatedPost.readTime}}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="post-navigation">
+      <a routerLink="/blog" class="nav-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to All Posts
+      </a>
+    </nav>
+  </div>
+</article>
+
+<!-- 404 Message -->
+<div class="container" *ngIf="!post">
+  <div class="not-found">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h2>Post Not Found</h2>
+    <p>The blog post you're looking for doesn't exist or may have been removed.</p>
+    <a routerLink="/blog" class="btn btn-primary">
+      <i class="fas fa-arrow-left"></i>
+      Back to Blog
+    </a>
+  </div>
+</div>

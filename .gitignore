@@ -41,3 +41,94 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files
+*.tgz
+*.tar.gz
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs
+*.log
+loglevel
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Angular CLI cache
+.angular/cache/
+
+# Webpack bundle analyzer
+webpack-bundle-analyzer-report.html
+
+# Firebase
+.firebase
+.firebaserc
+firebase-debug.log
+
+# Azure
+.azure/
+
+# Local development
+*.local
+
+# Portfolio specific - personal photo (replace with your own)
+/src/assets/images/developer-photo.jpg
+
+# Development database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Package manager lock files (uncomment if you want to ignore them)
+# package-lock.json
+# yarn.lock
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+ehthumbs.db
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Mac folder attributes
+.DS_Store
