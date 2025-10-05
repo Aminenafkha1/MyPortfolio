@@ -38,9 +38,37 @@
       </div>
     </header>
 
-    <!-- Featured Image -->
-    <div class="post-featured-image">
-      <img [src]="post.image" [alt]="post.title">
+    <!-- Professional Blog Header Image -->
+    <div class="blog-header-image">
+      <div class="header-overlay">
+        <div class="header-content">
+          <div class="blog-branding">
+            <div class="author-signature">
+              <span class="author-name">Amine Nafkha</span>
+              <span class="author-title">Senior .NET Developer</span>
+            </div>
+            <div class="blog-title-wrapper">
+              <h1 class="blog-post-title">{{post.title}}</h1>
+              <div class="blog-metadata">
+                <span class="category-badge">{{post.category}}</span>
+                <span class="read-time">{{post.readTime}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="tech-pattern">
+            <div class="code-lines">
+              <span class="line">const blog = new TechBlog();</span>
+              <span class="line">blog.author = "Amine Nafkha";</span>
+              <span class="line">blog.publish();</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="geometric-patterns">
+        <div class="pattern pattern-1"></div>
+        <div class="pattern pattern-2"></div>
+        <div class="pattern pattern-3"></div>
+      </div>
     </div>
 
     <!-- Post Content -->
@@ -66,28 +94,36 @@
         <div class="article-content" [innerHTML]="post.content"></div>
       </div>
 
-      <!-- Author Bio -->
-      <div class="author-bio-section">
-        <div class="author-bio-card card">
-          <img [src]="post.author.avatar" [alt]="post.author.name" class="author-large-avatar">
-          <div class="author-bio-content">
-            <h3>About {{post.author.name}}</h3>
-            <p>{{post.author.bio}}</p>
-            <div class="author-social">
-              <a href="#" class="social-link">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#" class="social-link">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="#" class="social-link">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </div>
+
+    </div>
+
+    <!-- About the Author Section -->
+    <section class="about-author">
+      <div class="author-bio-card">
+        <img src="assets/images/me.jpg" alt="Amine Nafkha" class="author-large-avatar" loading="lazy">
+        <div class="author-bio-content">
+          <h3>About Amine Nafkha</h3>
+          <p>
+            Senior .NET Developer & DevOps Specialist with 3+ years of experience building enterprise-grade applications, 
+            microservices architecture, and cloud-native solutions. Passionate about C#, ASP.NET Core, Angular, and modern DevOps practices.
+          </p>
+          <div class="author-social">
+            <a href="https://linkedin.com/in/aminenafkha" target="_blank" class="social-link">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/aminenafkha1" target="_blank" class="social-link">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/AmineNafkha" target="_blank" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="mailto:amine.nafkha@example.com" class="social-link">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Related Posts -->
     <section class="related-posts" *ngIf="relatedPosts.length > 0">

@@ -20,8 +20,19 @@
       <div class="featured-grid">
         <article class="featured-post card" *ngFor="let post of getFeaturedPosts()">
           <div class="post-image">
-            <img [src]="post.image" [alt]="post.title" loading="lazy">
-            <div class="post-category">{{post.category}}</div>
+            <div class="mini-blog-header">
+              <div class="mini-header-overlay">
+                <div class="mini-header-content">
+                  <div class="mini-author">Amine Nafkha</div>
+                  <div class="mini-title">{{post.title}}</div>
+                  <div class="mini-category">{{post.category}}</div>
+                </div>
+              </div>
+              <div class="mini-patterns">
+                <div class="mini-pattern mini-pattern-1"></div>
+                <div class="mini-pattern mini-pattern-2"></div>
+              </div>
+            </div>
           </div>
           <div class="post-content">
             <div class="post-meta">
@@ -66,8 +77,19 @@
     <div class="posts-grid">
       <article class="post-card card" *ngFor="let post of filteredPosts; trackBy: trackByPostId">
         <div class="post-image">
-          <img [src]="post.image" [alt]="post.title" loading="lazy">
-          <div class="post-category">{{post.category}}</div>
+          <div class="mini-blog-header">
+            <div class="mini-header-overlay">
+              <div class="mini-header-content">
+                <div class="mini-author">Amine Nafkha</div>
+                <div class="mini-title">{{post.title}}</div>
+                <div class="mini-category">{{post.category}}</div>
+              </div>
+            </div>
+            <div class="mini-patterns">
+              <div class="mini-pattern mini-pattern-1"></div>
+              <div class="mini-pattern mini-pattern-2"></div>
+            </div>
+          </div>
         </div>
         <div class="post-content">
           <div class="post-meta">

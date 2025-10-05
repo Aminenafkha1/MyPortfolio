@@ -12,7 +12,7 @@ export class ProjectsComponent implements OnInit {
   selectedCategory = 'All';
   filteredProjects: any[] = [];
 
-  categories = ['All', 'Backend', 'Frontend', 'Full Stack', 'Cloud', 'Microservices', 'Security', 'Mobile'];
+  categories = ['All', 'Backend', 'Full Stack', 'Cloud', 'Microservices', 'Security', 'Mobile','Office Development'];
 
   projects = [
     {
@@ -45,7 +45,7 @@ export class ProjectsComponent implements OnInit {
     ],
       image: 'assets/images/addin.png',
       demoUrl: 'https://www.dnext.io',
-      githubUrl: 'https://github.com/yourname/ecommerce-microservices',
+      githubUrl: null,
       status: 'Active',
       featured: true,
       complexity: 'Enterprise',
@@ -89,7 +89,7 @@ export class ProjectsComponent implements OnInit {
     ],
       image: 'assets/images/bmdrm.jpg',
       demoUrl: 'https://bmdrm.com/',
-      githubUrl: 'https://github.com/yourname/analytics-dashboard',
+      githubUrl: null,
       status: 'Completed',
       featured: true,
       complexity: 'Advanced',
@@ -125,8 +125,8 @@ export class ProjectsComponent implements OnInit {
       'Code Review and Merge Process'
     ],
       image: 'assets/images/comptabli.png',
-      demoUrl: 'https://tasks-cloud.example.com',
-      githubUrl: 'https://github.com/yourname/cloud-task-manager',
+      demoUrl: null,
+      githubUrl: null,
       status: 'Completed',
       featured: false,
       complexity: 'Advanced',
@@ -216,7 +216,57 @@ export class ProjectsComponent implements OnInit {
       complexity: 'Intermediate',
       duration: '2 months',
       teamSize: '1 developer'
-    }
+    },
+
+        {
+      id: 7,
+   title: 'SUPWARDEN - Password Manager',
+    description:
+      'An enterprise password management web application built with .NET 8 Blazor WASM, offering secure storage, team sharing, and chat integration.',
+    category: 'Full Stack',
+    technologies: ['.NET Core 8', 'Blazor WebAssembly', 'PostgreSQL', 'EF Core', 'Docker', 'Nginx'],
+    features: [
+      'OAuth2 Authentication (Google, Microsoft, GitHub)',
+      'Encrypted Keychain Management',
+      'Password Generator',
+      'JSON/CSV Import & Export',
+      'Instant Messaging within Groups',
+      'Dockerized Deployment'
+    ],
+    image: 'assets/images/supwarden.jpeg',
+    demoUrl: null,
+    githubUrl: null,
+    status: 'Completed',
+    featured: false,
+    complexity: 'Advanced',
+    duration: 'Freelance (2023)',
+    teamSize: '1 developer'
+    },
+
+
+     {
+    id: 8,
+    title: 'SEAENERGY - Salon ERP System - API',
+    description:
+      'A custom ERP platform for a beauty salon in Lyon to manage operations, appointments, and payments with online booking and reporting.',
+    category: 'Backend',
+    technologies: ['.NET Core 7', 'Docker', 'REST API', 'EF Core', 'MS SQL Server', 'AutoMapper', 'xUnit'],
+    features: [
+      'Backend System Architecture',
+      'Stripe Payment Integration',
+      'Appointment & Order Management',
+      'Excel Export',
+      'Containerized Deployment'
+    ],
+    image: 'assets/projects/seaenergy.jpg',
+    demoUrl: null,
+    githubUrl: null,
+    status: 'Completed',
+    featured: false,
+    complexity: 'Intermediate',
+    duration: 'Freelance (2023)',
+    teamSize: '1 developer'
+  }
   ];
 
   ngOnInit() {

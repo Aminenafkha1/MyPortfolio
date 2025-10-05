@@ -48,8 +48,8 @@ export class BlogPostComponent implements OnInit, AfterViewInit {
         featured: true,
         author: {
           name: 'Amine',
-          avatar: 'assets/author-avatar.jpg',
-          bio: 'Senior .NET Developer with 5+ years of experience in building enterprise applications and microservices architecture.'
+          avatar: 'assets/images/me.jpg',
+          bio: 'Senior .NET Developer with 3+ years of experience in building enterprise applications and microservices architecture.'
         }
       },
       {

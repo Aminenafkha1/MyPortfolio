@@ -87,10 +87,10 @@ export class SkillsComponent implements OnInit, AfterViewInit {
 
   certifications = [
     {
-      name: 'Microsoft Certified: Azure Developer Associate',
+      name: 'Foundational C# with Microsoft',
       issuer: 'Microsoft',
-      date: '2024',
-      credentialId: 'AZ-204',
+      date: '2023',
+      credentialId: 'fcc8ad7d315-8598-4dde-a04e-82b85d355b25',
       icon: 'fab fa-microsoft',
       verified: true
     },
@@ -107,7 +107,7 @@ export class SkillsComponent implements OnInit, AfterViewInit {
       issuer: 'SCRUMStudy',
       date: '2022',
       credentialId: '895230',
-      icon: 'fas fa-dharmachakra',
+      icon: 'fas fa-tasks',
       verified: true
     }
   ];
