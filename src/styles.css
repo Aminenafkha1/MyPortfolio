@@ -1,8 +1,5 @@
 ﻿/* Professional .NET/C# Developer Portfolio Styles */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
-@import url('https://unpkg.com/aos@2.3.1/dist/aos.css');
+/* Fonts are loaded in index.html to avoid build-time inlining issues */
 
 /* ==============================================
    CSS VARIABLES - .NET/Visual Studio Theme
