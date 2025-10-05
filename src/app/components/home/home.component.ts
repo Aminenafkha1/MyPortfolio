@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SubscriptionService } from '../../services/subscription.service';
+import { BlogService, BlogPost } from '../../services/blog.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -14,46 +18,56 @@ export class HomeComponent implements OnInit, OnDestroy {
   greetingIndex = 0;
   typingInterval: any;
 
+  // Subscription related properties
+  subscriptionForm: FormGroup;
+  isSubscribing = false;
+  subscriberCount = 150; // Default count, will be updated from service
+  subscriptionStatus = {
+    success: false,
+    error: false,
+    message: ''
+  };
+
   // Stats for the hero section
-  experienceYears = 5;
-  projectsCompleted = 50;
-  technologiesUsed = 25;
+  experienceYears = 3;
+  projectsCompleted = 12;
+  technologiesUsed = 20;
 
   // Tech stack icons
   techStack = [
-    { name: 'C#', icon: 'fab fa-csharp' },
+    { name: 'C#', icon: 'csharp-icon' }, // Custom C# icon
     { name: 'Angular', icon: 'fab fa-angular' },
-    { name: 'TypeScript', icon: 'fab fa-js-square' },
-    { name: 'Azure', icon: 'fab fa-microsoft' },
-    { name: 'Docker', icon: 'fab fa-docker' },
+    { name: 'SQL Server', icon: 'fas fa-database' },
+    { name: 'JavaScript', icon: 'fab fa-js-square' },
+    { name: 'HTML/CSS', icon: 'fab fa-html5' },
     { name: 'Git', icon: 'fab fa-git-alt' }
   ];
 
   greetings = [
-    'Senior .NET Developer',
-    'Full Stack Engineer',
-    'Cloud Solutions Architect',
-    'DevOps Engineer'
+    '.NET Developer',
+    'Full Stack Developer',
+    'Software Engineer',
+    'Backend Developer'
   ];
 
   stats = [
     {
       icon: 'fas fa-code',
       title: 'Web Applications',
-      description: 'Enterprise-grade applications built with ASP.NET Core, Entity Framework, and modern frontend frameworks.',
-      technologies: ['C#', 'ASP.NET Core', 'Angular', 'React', 'TypeScript']
+      description: 'Full-stack web applications built with ASP.NET Core, MVC, and modern frontend frameworks like Angular.',
+      technologies: ['C#', 'ASP.NET Core', 'ASP.NET MVC', 'Angular', 'TypeScript']
     },
     {
       icon: 'fas fa-database',
-      title: 'Database Design',
-      description: 'Scalable database architectures using SQL Server, PostgreSQL, and NoSQL solutions with optimal performance.',
-      technologies: ['SQL Server', 'PostgreSQL', 'MongoDB', 'Redis', 'Entity Framework']
+      title: 'Database Management',
+      description: 'Database design and optimization using SQL Server with Entity Framework for data access.',
+      technologies: ['SQL Server', 'Entity Framework', 'T-SQL', 'Database Design', 'SSMS']
     },
     {
-      icon: 'fas fa-cloud',
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud applications and DevOps practices using Azure, AWS, and automated CI/CD pipelines.',
-      technologies: ['Azure', 'Docker', 'Kubernetes', 'DevOps', 'GitHub Actions']
+      icon: 'fas fa-desktop',
+      title: 'Desktop Applications',
+      description: 'Windows desktop applications using WPF, WinForms, and .NET Framework for business solutions.',
+      technologies: ['WPF', 'WinForms', '.NET Framework', 'C#', 'XAML']
     }
   ];
 
@@ -75,26 +89,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  recentProjects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with microservices architecture',
-      technologies: ['ASP.NET Core', 'Angular', 'SQL Server', 'Docker'],
-      image: 'assets/project1.jpg',
-      demoUrl: '#',
-      liveUrl: '#',
-      githubUrl: '#'
-    },
-    {
-      title: 'Real-time Analytics Dashboard',
-      description: 'Business intelligence dashboard with real-time data visualization',
-      technologies: ['C#', 'SignalR', 'Chart.js', 'PostgreSQL'],
-      image: 'assets/project2.jpg',
-      demoUrl: '#',
-      liveUrl: '#',
-      githubUrl: '#'
-    }
-  ];
+  // Latest articles from blog (dynamically loaded)
+  latestArticles: BlogPost[] = [];
 
   editorLines = Array(15).fill(0);
 
@@ -109,15 +105,71 @@ export class HomeComponent implements OnInit, OnDestroy {
     { text: '    [HttpGet]', x: Math.random() * 100, delay: Math.random() * 5 }
   ];
 
+  constructor(
+    private fb: FormBuilder,
+    private subscriptionService: SubscriptionService,
+    private blogService: BlogService
+  ) {
+    this.subscriptionForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+
+    // Get current subscriber count
+    this.subscriberCount = this.subscriptionService.getSubscriberCount();
+  }
+
   ngOnInit() {
     this.startTypewriterEffect();
     this.animateCodeLines();
+    this.loadLatestArticles();
   }
 
   ngOnDestroy() {
     if (this.typingInterval) {
       clearInterval(this.typingInterval);
     }
+  }
+
+  // Subscription methods
+  onSubscribe() {
+    if (this.subscriptionForm.valid) {
+      this.isSubscribing = true;
+      this.subscriptionStatus = { success: false, error: false, message: '' };
+
+      const email = this.subscriptionForm.get('email')?.value;
+      
+      // Use Kit.com integration with blog-related tags
+      this.subscriptionService.subscribeViaEmbed(email).subscribe({
+        next: (response) => {
+          this.isSubscribing = false;
+          if (response.success) {
+            this.subscriptionStatus = { success: true, error: false, message: response.message };
+            this.subscriberCount = this.subscriptionService.getSubscriberCount();
+            
+            // Reset form after success
+            setTimeout(() => {
+              this.subscriptionStatus = { success: false, error: false, message: '' };
+              this.subscriptionForm.reset();
+            }, 5000);
+          } else {
+            this.subscriptionStatus = { success: false, error: true, message: response.message };
+          }
+        },
+        error: (error) => {
+          this.isSubscribing = false;
+          this.subscriptionStatus = { 
+            success: false, 
+            error: true, 
+            message: 'Something went wrong. Please try again.' 
+          };
+        }
+      });
+    }
+  }
+
+  // Load latest articles from blog service
+  loadLatestArticles() {
+    this.latestArticles = this.blogService.getLatestPosts(2); // Get 2 latest articles
   }
 
   private startTypewriterEffect() {
@@ -147,27 +199,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getHighlightedCode(): string {
-    return `using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+    return `using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProjectsController : ControllerBase
+namespace Portfolio.Controllers
 {
-²    private readonly ApplicationDbContext _context;
-    
-    public ProjectsController(ApplicationDbContext context)
+    public class AccountingController : Controller
     {
-        _context = context;
-    }
-    
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
-    {
-        return await _context.Projects
-            .Include(p => p.Technologies)
-            .ToListAsync();
+        private readonly IAccountingService _accountingService;
+        
+        public AccountingController(IAccountingService service)
+        {
+            _accountingService = service;
+        }
+        
+        [HttpGet]
+        public ActionResult GetFinancialReports()
+        {
+            var reports = _accountingService
+                .GetReports()
+                .Where(r => r.IsActive)
+                .OrderBy(r => r.Date)
+                .ToList();
+                
+            return Json(reports, JsonRequestBehavior.AllowGet);
+        }
     }
 }`;
   }

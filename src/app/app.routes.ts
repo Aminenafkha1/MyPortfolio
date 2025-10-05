@@ -5,6 +5,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,6 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogPostComponent },
-  { path: 'contact', component: HomeComponent }, // Temporary redirect to home
+  { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '' }
 ];

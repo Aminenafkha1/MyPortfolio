@@ -20,8 +20,8 @@
       </h1>
       
       <p class="hero-subtitle">
-        Building enterprise-grade applications with <strong>C#</strong>, <strong>ASP.NET</strong>, 
-        and modern web technologies
+        Building robust applications with <strong>C#</strong>, <strong>ASP.NET Core</strong>, 
+        <strong>ASP.NET MVC</strong>, and modern web technologies
       </p>
       
       <div class="hero-stats">
@@ -97,25 +97,25 @@
               </div>
               
               <div class="profile-info">
-                <h3 class="developer-name">Amine</h3>
-                <p class="developer-role">Senior .NET Developer</p>
+                <h3 class="developer-name">Amine Nafkha</h3>
+                <p class="developer-role">.NET Developer</p>
                 <div class="developer-location">
                   <i class="fas fa-map-marker-alt"></i>
-                  <span>Available Worldwide</span>
+                  <span>Tunisia</span>
                 </div>
                 
                 <div class="profile-social-links">
-                  <a href="#" class="profile-social-link" title="LinkedIn">
+                  <a href="https://www.linkedin.com/in/amine-nafkha/" target="_blank" class="profile-social-link" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                   </a>
-                  <a href="#" class="profile-social-link" title="GitHub">
+                  <a href="https://github.com/Aminenafkha1" target="_blank" class="profile-social-link" title="GitHub">
                     <i class="fab fa-github"></i>
                   </a>
-                  <a href="#" class="profile-social-link" title="Stack Overflow">
-                    <i class="fab fa-stack-overflow"></i>
-                  </a>
-                  <a href="#" class="profile-social-link" title="Twitter">
+                  <a href="https://twitter.com/AmineNafkha" target="_blank" class="profile-social-link" title="Twitter">
                     <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="mailto:aminenafkha@gmail.com" class="profile-social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
                   </a>
                 </div>
               </div>
@@ -158,42 +158,178 @@
   </div>
 </section>
 
-<!-- Recent Work Section -->
-<section class="recent-work-section section bg-secondary">
+<!-- Latest Articles Section -->
+<section class="latest-articles-section section bg-secondary">
   <div class="container">
     <div class="section-header text-center">
-      <h2>Recent Projects</h2>
-      <p>Some of my latest work showcasing different technologies and approaches</p>
+      <h2>Latest Articles</h2>
+      <p>Recent insights and tutorials about .NET development, cloud architecture, and modern software practices</p>
     </div>
     
-    <div class="projects-preview grid-2">
-      <div class="project-card card" *ngFor="let project of recentProjects">
-        <div class="project-image">
-          <img [src]="project.image" [alt]="project.title">
-          <div class="project-overlay">
-            <a [href]="project.liveUrl" class="project-link" target="_blank">
-              <i class="fas fa-external-link-alt"></i>
+    <div class="articles-preview grid-2">
+      <div class="article-card card" *ngFor="let article of latestArticles">
+        <div class="article-image">
+          <div class="mini-blog-header">
+            <div class="mini-header-overlay">
+              <div class="mini-header-content">
+                <div class="mini-author">Amine Nafkha</div>
+                <div class="mini-title">{{article.title}}</div>
+                <div class="mini-category">{{article.category}}</div>
+              </div>
+            </div>
+            <div class="mini-patterns">
+              <div class="mini-pattern mini-pattern-1"></div>
+              <div class="mini-pattern mini-pattern-2"></div>
+            </div>
+          </div>
+          <div class="article-overlay">
+            <a [routerLink]="['/blog', article.id]" class="article-link">
+              <i class="fas fa-book-open"></i>
             </a>
-            <a [href]="project.githubUrl" class="project-link" target="_blank">
-              <i class="fab fa-github"></i>
-            </a>
+          </div>
+          <div class="article-meta">
+            <span class="article-category">{{article.category}}</span>
+            <span class="article-date">{{article.publishDate | date:'MMM dd, yyyy'}}</span>
           </div>
         </div>
-        <div class="project-content">
-          <h3>{{project.title}}</h3>
-          <p>{{project.description}}</p>
-          <div class="project-technologies">
-            <span class="tech-tag" *ngFor="let tech of project.technologies">{{tech}}</span>
+        <div class="article-content">
+          <h3>{{article.title}}</h3>
+          <p>{{article.excerpt}}</p>
+          <div class="article-info">
+            <div class="article-tags">
+              <span class="tech-tag" *ngFor="let tag of article.tags.slice(0, 3)">{{tag}}</span>
+            </div>
+            <div class="article-read-time">
+              <i class="fas fa-clock"></i>
+              {{article.readTime}}
+            </div>
           </div>
+          <a [routerLink]="['/blog', article.id]" class="read-more-link">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </div>
     </div>
     
     <div class="text-center mt-5">
-      <a routerLink="/projects" class="btn btn-primary">
-        <i class="fas fa-folder-open"></i>
-        View All Projects
+      <a routerLink="/blog" class="btn btn-primary">
+        <i class="fas fa-newspaper"></i>
+        View All Articles
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Newsletter Subscription Section -->
+<section class="newsletter-section section">
+  <div class="container">
+    <div class="newsletter-container">
+      <div class="newsletter-content">
+        <div class="newsletter-header">
+          <div class="newsletter-icon">
+            <i class="fas fa-newspaper"></i>
+          </div>
+          <h2>Stay Updated with My Latest Articles</h2>
+          <p>Get notified when I publish new articles about .NET development, best practices, and cutting-edge technologies. Join {{subscriberCount}}+ developers who never miss an update!</p>
+          <div class="kit-powered">
+            <span>Powered by <a href="https://builtwith.kit.com" target="_blank" rel="noopener">Kit.com</a></span>
+          </div>
+        </div>
+
+        <div class="newsletter-form-container">
+          <!-- Success Message -->
+          <div *ngIf="subscriptionStatus.success" class="subscription-success">
+            <i class="fas fa-check-circle"></i>
+            <h3>Welcome to the Newsletter!</h3>
+            <p>{{subscriptionStatus.message}}</p>
+            <div class="kit-success-note">
+              <small>You'll receive a confirmation email from Kit.com to complete your subscription.</small>
+            </div>
+          </div>
+
+          <!-- Subscription Form -->
+          <form *ngIf="!subscriptionStatus.success" [formGroup]="subscriptionForm" (ngSubmit)="onSubscribe()" class="newsletter-form">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <input 
+                  type="email" 
+                  formControlName="email"
+                  placeholder="Enter your email address"
+                  class="newsletter-input"
+                  [class.error]="subscriptionForm.get('email')?.invalid && subscriptionForm.get('email')?.touched">
+                <button 
+                  type="submit" 
+                  class="newsletter-btn"
+                  [disabled]="isSubscribing || subscriptionForm.invalid">
+                  <span *ngIf="!isSubscribing">
+                    <i class="fas fa-bell"></i>
+                    Subscribe
+                  </span>
+                  <span *ngIf="isSubscribing">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Subscribing...
+                  </span>
+                </button>
+              </div>
+              <div *ngIf="subscriptionForm.get('email')?.invalid && subscriptionForm.get('email')?.touched" class="error-message">
+                Please enter a valid email address
+              </div>
+              <div *ngIf="subscriptionStatus.error" class="error-message">
+                {{subscriptionStatus.message}}
+              </div>
+            </div>
+          </form>
+
+          <div class="newsletter-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-code"></i>
+              <span>Latest .NET tutorials</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-lightbulb"></i>
+              <span>Best practices & tips</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-rocket"></i>
+              <span>New project showcases</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-envelope-open"></i>
+              <span>Powered by Kit.com</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>No spam, unsubscribe anytime</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="newsletter-visual">
+        <div class="newsletter-mockup">
+          <div class="email-preview">
+            <div class="email-header">
+              <div class="email-subject">New Article: Advanced C# Patterns</div>
+              <div class="email-from">From: Amine Nafkha</div>
+            </div>
+            <div class="email-content">
+              <h4>This Week's Article</h4>
+              <p>Discover advanced design patterns in C# that will make your code more maintainable...</p>
+              <div class="email-cta">
+                <span class="read-more-btn">Read Full Article →</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating-icons">
+            <i class="fas fa-code floating-icon" style="--delay: 0s"></i>
+            <i class="fab fa-microsoft floating-icon" style="--delay: 1s"></i>
+            <i class="fas fa-database floating-icon" style="--delay: 2s"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Location } from '@angular/common';
+import { BlogService, BlogPost } from '../../services/blog.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -11,17 +12,18 @@ import { Location } from '@angular/common';
   styleUrl: './blog-post.component.css'
 })
 export class BlogPostComponent implements OnInit, AfterViewInit {
-  post: any = null;
-  relatedPosts: any[] = [];
+  post: BlogPost | null = null;
+  relatedPosts: BlogPost[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private blogService: BlogService
   ) {}
 
   ngOnInit() {
     const postId = Number(this.route.snapshot.paramMap.get('id'));
-    this.post = this.getBlogPosts().find(p => p.id === postId);
+    this.post = this.blogService.getPostById(postId) || null;
     
     if (this.post) {
       this.loadRelatedPosts();
@@ -645,10 +647,13 @@ steps:
   }
 
   loadRelatedPosts() {
-    const allPosts = this.getBlogPosts();
-    this.relatedPosts = allPosts
-      .filter(p => p.id !== this.post.id && p.category === this.post.category)
-      .slice(0, 3);
+    if (!this.post) return;
+    
+    this.blogService.getAllPosts().subscribe(allPosts => {
+      this.relatedPosts = allPosts
+        .filter(p => p.id !== this.post!.id && p.category === this.post!.category)
+        .slice(0, 3);
+    });
   }
 
   goBack() {
@@ -656,6 +661,8 @@ steps:
   }
 
   sharePost() {
+    if (!this.post) return;
+    
     if (navigator.share) {
       navigator.share({
         title: this.post.title,
