@@ -27,7 +27,7 @@ The following files ensure proper deployment:
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
@@ -44,7 +44,7 @@ The following files ensure proper deployment:
 - ✅ **SPA Routing**: All routes redirect to index.html for client-side routing
 - ✅ **Asset Caching**: Optimized caching for JS/CSS/images
 - ✅ **Production Build**: Optimized Angular build with minification
-- ✅ **Node 18**: Latest stable Node.js version
+- ✅ **Node 20**: Required Node.js version for Angular 20+ compatibility
 
 ### 5. Custom Domain (Optional)
 After successful deployment:
@@ -64,7 +64,7 @@ For Kit.com integration:
 
 ### Issue: Build fails
 **Possible solutions**:
-- Check Node.js version (set to 18 in netlify.toml)
+- Check Node.js version (set to 20 in netlify.toml for Angular 20+ compatibility)
 - Verify package.json dependencies
 - Check Angular build configuration
 
