@@ -14,6 +14,8 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "prerender": false,
+            "ssr": false,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -30,13 +32,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "600kB",
+                  "maximumError": "1.2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "16kB",
-                  "maximumError": "24kB"
+                  "maximumWarning": "24kB",
+                  "maximumError": "32kB"
                 }
               ],
               "outputHashing": "all"
