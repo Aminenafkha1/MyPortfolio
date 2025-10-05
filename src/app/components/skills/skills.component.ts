@@ -19,7 +19,7 @@ export class SkillsComponent implements OnInit, AfterViewInit {
         { name: 'ASP.NET Core', level: 90, icon: 'fas fa-code' },
         { name: 'Entity Framework', level: 88, icon: 'fas fa-database' },
         { name: 'Web API', level: 92, icon: 'fas fa-plug' },
-        { name: 'SignalR', level: 85, icon: 'fas fa-broadcast-tower' },
+        { name: 'Distributed Systems — Actor Model', level: 85, icon: 'fas fa-broadcast-tower' },
         { name: 'Microservices', level: 87, icon: 'fas fa-cubes' }
       ]
     },
@@ -32,7 +32,7 @@ export class SkillsComponent implements OnInit, AfterViewInit {
         { name: 'HTML5 & CSS3', level: 90, icon: 'fab fa-html5' },
         { name: 'Bootstrap', level: 82, icon: 'fab fa-bootstrap' },
         { name: 'SCSS/Sass', level: 80, icon: 'fab fa-sass' },
-        { name: 'RxJS', level: 78, icon: 'fas fa-stream' }
+        { name: 'Blazor', level: 78, icon: 'fas fa-stream' }
       ]
     },
     {
@@ -95,18 +95,18 @@ export class SkillsComponent implements OnInit, AfterViewInit {
       verified: true
     },
     {
-      name: 'Microsoft Certified: Azure Solutions Architect Expert',
+      name: 'Microsoft Certified: Azure Fundamentals',
       issuer: 'Microsoft',
       date: '2024',
-      credentialId: 'AZ-305',
+      credentialId: 'AZ-900',
       icon: 'fab fa-microsoft',
       verified: true
     },
     {
-      name: 'Certified Kubernetes Application Developer',
-      issuer: 'Cloud Native Computing Foundation',
-      date: '2023',
-      credentialId: 'CKAD',
+      name: 'Scrum Fundamentals certified',
+      issuer: 'SCRUMStudy',
+      date: '2022',
+      credentialId: '895230',
       icon: 'fas fa-dharmachakra',
       verified: true
     }
