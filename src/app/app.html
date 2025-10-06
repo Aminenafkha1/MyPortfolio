@@ -1,16 +1,16 @@
 <!-- Professional .NET Developer Portfolio Navigation -->
-<nav class="navbar" id="navbar">
+<nav class="navbar" [class.scrolled]="isScrolled()">
   <div class="container nav-content">
     <div class="nav-brand">
       <a routerLink="/">
         <i class="fas fa-code"></i>
-        <span>&lt;AmineNafkha/&gt;</span>
+        <span class="brand-text">&lt;AmineNafkha/&gt;</span>
       </a>
     </div>
     
     <!-- Desktop Navigation -->
     <ul class="nav-links desktop-nav">
-      <li><a routerLink="/" routerLinkActive="active" class="nav-link">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
         <i class="fas fa-home"></i>
         <span>Home</span>
       </a></li>
@@ -37,7 +37,7 @@
     </ul>
     
     <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+    <button class="mobile-menu-toggle" [class.active]="isMobileMenuOpen()" (click)="toggleMobileMenu()">
       <span></span>
       <span></span>
       <span></span>
@@ -45,29 +45,29 @@
   </div>
   
   <!-- Mobile Navigation -->
-  <div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav" [class.active]="isMobileMenuOpen()">
     <ul class="mobile-nav-links">
-      <li><a routerLink="/" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-home"></i>
         <span>Home</span>
       </a></li>
-      <li><a routerLink="/about" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/about" routerLinkActive="active" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-user"></i>
         <span>About</span>
       </a></li>
-      <li><a routerLink="/skills" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/skills" routerLinkActive="active" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-code-branch"></i>
         <span>Skills</span>
       </a></li>
-      <li><a routerLink="/projects" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/projects" routerLinkActive="active" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-laptop-code"></i>
         <span>Projects</span>
       </a></li>
-      <li><a routerLink="/blog" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/blog" routerLinkActive="active" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-blog"></i>
         <span>Blog</span>
       </a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" class="mobile-nav-link" onclick="closeMobileMenu()">
+      <li><a routerLink="/contact" routerLinkActive="active" class="mobile-nav-link" (click)="closeMobileMenu()">
         <i class="fas fa-envelope"></i>
         <span>Contact</span>
       </a></li>
@@ -80,45 +80,7 @@
   <router-outlet></router-outlet>
 </main>
 
-
-
 <!-- Scroll to Top Button -->
-<button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+<button class="scroll-to-top" [class.visible]="isScrolled()" (click)="scrollToTop()">
   <i class="fas fa-chevron-up"></i>
 </button>
-
-<script>
-// Navigation functionality
-function toggleMobileMenu() {
-  const mobileNav = document.getElementById('mobileNav');
-  const toggleBtn = document.querySelector('.mobile-menu-toggle');
-  mobileNav.classList.toggle('active');
-  toggleBtn.classList.toggle('active');
-}
-
-function closeMobileMenu() {
-  const mobileNav = document.getElementById('mobileNav');
-  const toggleBtn = document.querySelector('.mobile-menu-toggle');
-  mobileNav.classList.remove('active');
-  toggleBtn.classList.remove('active');
-}
-
-// Scroll functionality
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-  const navbar = document.getElementById('navbar');
-  const scrollTop = document.getElementById('scrollToTop');
-  
-  if (window.scrollY > 100) {
-    navbar.classList.add('scrolled');
-    scrollTop.classList.add('visible');
-  } else {
-    navbar.classList.remove('scrolled');
-    scrollTop.classList.remove('visible');
-  }
-});
-</script>

@@ -740,6 +740,29 @@ pre {
 /* ==============================================
    RESPONSIVE DESIGN
    ============================================== */
+
+/* Brand text visibility fix */
+.brand-text {
+  display: inline;
+}
+
+/* Enhanced Mobile Breakpoints */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -752,12 +775,19 @@ pre {
   .hero-actions {
     flex-direction: column;
     align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
   }
   
   .grid-2,
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
   
   .container {
@@ -771,38 +801,199 @@ pre {
   .main-content {
     margin-top: 70px;
   }
+  
+  /* Better card spacing on mobile */
+  .card {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  /* Skills grid improvements */
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  /* Project card improvements */
+  .project-card {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  /* Hero section mobile improvements */
+  .hero-section {
+    min-height: 80vh;
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .hero-stats {
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+  }
+  
+  .stat-item {
+    min-width: 100px;
+  }
 }
 
 @media (max-width: 480px) {
   .btn {
     width: 100%;
     justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.95rem;
   }
   
   .card {
     padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
   }
   
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    line-height: 1.3;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.4;
   }
   
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  /* Navigation improvements */
   .nav-brand a {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   
-  .nav-brand span {
-    display: none;
+  .brand-text {
+    display: inline !important;
+    font-size: 0.9rem;
   }
   
+  .mobile-menu-toggle {
+    width: 35px;
+    height: 35px;
+  }
+  
+  /* Scroll to top button */
   .scroll-to-top {
     width: 45px;
     height: 45px;
     bottom: 20px;
     right: 20px;
+  }
+  
+  /* Hero section small screen improvements */
+  .hero-title {
+    font-size: clamp(1.75rem, 8vw, 2rem);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  
+  .mobile-nav-link {
+    padding: var(--spacing-md);
+    font-size: 1rem;
+  }
+  
+  /* Form improvements */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  input, textarea, select {
+    font-size: 1rem;
+    padding: var(--spacing-md);
+  }
+  
+  /* Blog post improvements */
+  .blog-post-card {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .blog-meta {
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+  }
+  
+  .nav-brand a {
+    font-size: 1rem;
+  }
+  
+  .brand-text {
+    font-size: 0.85rem;
+  }
+  
+  .mobile-menu-toggle {
+    width: 32px;
+    height: 32px;
   }
 }

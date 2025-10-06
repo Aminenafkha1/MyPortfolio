@@ -8,5 +8,30 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('portfolio');
+  // Mobile navigation state
+  isMobileMenuOpen = signal(false);
+  isScrolled = signal(false);
+
+  constructor() {
+    // Handle scroll events for navbar
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', () => {
+        this.isScrolled.set(window.scrollY > 100);
+      });
+    }
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen.update(isOpen => !isOpen);
+  }
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+  }
+
+  scrollToTop() {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 }
